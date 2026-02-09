@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(pnpm install:*)",
+      "Bash(pnpm create next-app:*)",
+      "Bash(pkill:*)",
+      "Bash(pnpm add:*)",
+      "Bash(pnpm --filter website add:*)",
+      "Bash(ls:*)",
+      "Bash(pnpm --filter website dev:*)",
+      "Bash(pgrep:*)",
+      "Bash(kill:*)",
+      "Bash(pnpm dev:*)",
+      "Bash(curl:*)",
+      "WebFetch(domain:www.bluesea.global)"
+    ]
+  }
+}

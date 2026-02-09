@@ -1,0 +1,72 @@
+{
+  "common": {
+    "language": "Language",
+    "chinese": "中文",
+    "english": "English"
+  },
+  "nav": {
+    "home": "Home",
+    "about": "About Us",
+    "services": "Services",
+    "whyUs": "Why Us",
+    "shop": "Shop"
+  },
+  "home": {
+    "hero": {
+      "title": "Connecting Global Resources · Driving Growth",
+      "subtitle": "BlueUnion specializes in global digital marketing and overseas growth solutions",
+      "description": "We integrate global media resources, technical capabilities, and localized insights to help businesses achieve sustainable growth in overseas markets.",
+      "tagline": "Turn traffic into assets, make campaigns the growth engine.",
+      "cta": "Learn More"
+    }
+  },
+  "about": {
+    "title": "About Us",
+    "intro": "BlueUnion is a growth-oriented global marketing service agency.",
+    "description": "We are deeply rooted in the overseas digital media ecosystem, focusing on providing systematic overseas solutions for brands, e-commerce, games, and internet products.",
+    "services": {
+      "title": "We provide more than just advertising services:",
+      "item1": "Global traffic resource integration",
+      "item2": "Localized market insights",
+      "item3": "Data-driven optimization systems",
+      "item4": "Long-term growth strategy planning"
+    },
+    "achievement": "We have served clients across multiple countries and regions, covering major global media platforms, helping businesses break market boundaries and achieve cross-regional growth."
+  },
+  "services": {
+    "title": "Service Areas",
+    "branding": {
+      "title": "Brand Globalization",
+      "description": "Build overseas brand awareness and create long-term brand assets. Enhance brand influence and market trust through content marketing, advertising, and multi-channel exposure."
+    },
+    "ecommerce": {
+      "title": "Cross-border E-commerce Growth",
+      "description": "From cold start to scaled growth, covering the full process of advertising, conversion optimization, remarketing, and user retention services."
+    },
+    "gaming": {
+      "title": "Global Game Publishing Support",
+      "description": "Develop promotional strategies for the game lifecycle, optimize user acquisition costs, and improve retention and payment conversion performance."
+    },
+    "apps": {
+      "title": "App & Tool Promotion",
+      "description": "Precisely reach target user groups to achieve dual improvements in download growth and commercial conversion."
+    }
+  },
+  "whyUs": {
+    "title": "Why Choose BlueUnion?",
+    "intro": "Because true overseas growth cannot be separated from stable account capabilities and resource systems. BlueUnion not only provides advertising services but also has mature media account integration and management capabilities. We help clients establish stable and sustainable advertising structures, not one-time operations.",
+    "capabilities": {
+      "title": "We can provide:",
+      "item1": "Stable media account support",
+      "item2": "Reasonable account structure planning",
+      "item3": "Sustainable scalable growth models"
+    },
+    "conclusion": "In the constantly changing global advertising environment, account capability determines growth space.",
+    "tagline": "BlueUnion - Resources as foundation, growth as result."
+  },
+  "footer": {
+    "copyright": "© 2024 BlueUnion. All rights reserved.",
+    "company": "Company Info",
+    "contact": "Contact Us"
+  }
+}
