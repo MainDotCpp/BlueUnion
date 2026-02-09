@@ -597,6 +597,82 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* --- INFINITE MARQUEE: TRUSTED BY --- */}
+      <section className="py-12 bg-white border-y border-slate-100 overflow-hidden">
+        <div className="relative">
+          {/* Subtle Label */}
+          <div className="text-center mb-8">
+            <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-slate-400">Trusted by Industry Leaders</span>
+          </div>
+
+          {/* Marquee Container */}
+          <div className="flex whitespace-nowrap animate-marquee-fast">
+            {/* First Set */}
+            <div className="flex items-center gap-16 px-8">
+              {[
+                'The New York Times',
+                'McKinsey & Company',
+                'Goldman Sachs',
+                'Sequoia Capital',
+                'Harvard Business Review',
+                'Deloitte',
+                'JP Morgan',
+                'Boston Consulting Group',
+                'Financial Times',
+                'Morgan Stanley',
+                'Bain & Company',
+                'The Wall Street Journal',
+              ].map((name, i) => (
+                <div key={i} className="flex items-center justify-center px-6 py-3">
+                  <span className="text-sm font-semibold text-slate-400 hover:text-slate-700 transition-colors tracking-wide">{name}</span>
+                </div>
+              ))}
+            </div>
+            {/* Duplicate Set for Seamless Loop */}
+            <div className="flex items-center gap-16 px-8">
+              {[
+                'The New York Times',
+                'McKinsey & Company',
+                'Goldman Sachs',
+                'Sequoia Capital',
+                'Harvard Business Review',
+                'Deloitte',
+                'JP Morgan',
+                'Boston Consulting Group',
+                'Financial Times',
+                'Morgan Stanley',
+                'Bain & Company',
+                'The Wall Street Journal',
+              ].map((name, i) => (
+                <div key={`dup-${i}`} className="flex items-center justify-center px-6 py-3">
+                  <span className="text-sm font-semibold text-slate-400 hover:text-slate-700 transition-colors tracking-wide">{name}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* CSS Animation */}
+        <style jsx>{`
+          @keyframes marquee-fast {
+            0% {
+              transform: translateX(0);
+            }
+            100% {
+              transform: translateX(-50%);
+            }
+          }
+
+          .animate-marquee-fast {
+            animation: marquee-fast 25s linear infinite;
+          }
+
+          .animate-marquee-fast:hover {
+            animation-play-state: paused;
+          }
+        `}</style>
+      </section>
+
       {/* --- HORIZONTAL SCROLL: CINEMATIC LUXURY EDITION --- */}
       <section id="cases" ref={horizontalRef} className="relative overflow-hidden bg-[#0a0a0a] text-white">
         {/* Scroll Progress Indicator */}

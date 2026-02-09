@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { Sparkles, ArrowUpRight, MessageCircle, Send as Telegram } from 'lucide-react';
+import { ArrowUpRight, MessageCircle, Send as Telegram } from 'lucide-react';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -44,9 +44,8 @@ export default function Footer() {
             <Link href="/" className="inline-flex items-center gap-3 mb-10 group">
               <div className="relative">
                 <div className="absolute inset-0 bg-blue-600/30 blur-xl rounded-full group-hover:bg-blue-500/40 transition-all duration-500" />
-                <div className="relative w-14 h-14 rounded-xl bg-gradient-to-br from-blue-600 via-blue-700 to-blue-800 flex items-center justify-center shadow-lg shadow-blue-600/50">
-                  <Sparkles className="w-7 h-7 text-white" />
-                  <div className="absolute inset-0 rounded-xl bg-gradient-to-t from-transparent via-white/10 to-white/20" />
+                <div className="relative w-14 h-14 rounded-xl bg-white flex items-center justify-center shadow-lg shadow-blue-600/50 overflow-hidden">
+                  <img src="/logo.png" alt="BlueUnion Logo" className="w-full h-full object-contain" />
                 </div>
               </div>
               <div className="flex flex-col">

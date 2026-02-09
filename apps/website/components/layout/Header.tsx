@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { Menu, X, Sparkles, ChevronRight } from 'lucide-react';
+import { Menu, X, ChevronRight } from 'lucide-react';
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -57,13 +57,16 @@ export default function Header() {
               {/* Animated Logo Icon */}
               <div className="relative">
                 <div className="absolute inset-0 bg-blue-600/20 blur-lg rounded-full group-hover:bg-blue-500/30 transition-all duration-500" />
-                <div className={`relative rounded-xl bg-gradient-to-br from-blue-600 via-blue-700 to-blue-800 flex items-center justify-center shadow-lg shadow-blue-600/50 group-hover:shadow-blue-500/70 transition-all duration-500 group-hover:scale-110 group-hover:rotate-6 ${
+                <div className={`relative rounded-xl bg-white flex items-center justify-center shadow-lg shadow-blue-600/50 group-hover:shadow-blue-500/70 transition-all duration-500 group-hover:scale-110 group-hover:rotate-6 overflow-hidden ${
                   isScrolled ? 'w-8 h-8 md:w-9 md:h-9' : 'w-10 h-10 md:w-11 md:h-11'
                 }`}>
-                  <Sparkles className={`text-white transition-all duration-500 ${
-                    isScrolled ? 'w-4 h-4 md:w-4.5 md:h-4.5' : 'w-5 h-5 md:w-5.5 md:h-5.5'
-                  }`} />
-                  <div className="absolute inset-0 rounded-xl bg-gradient-to-t from-transparent via-white/10 to-white/20" />
+                  <img
+                    src="/logo.png"
+                    alt="BlueUnion Logo"
+                    className={`transition-all duration-500 ${
+                      isScrolled ? 'w-full h-full' : 'w-full h-full'
+                    }`}
+                  />
                 </div>
               </div>
 
