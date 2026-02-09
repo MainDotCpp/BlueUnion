@@ -363,7 +363,7 @@ export default function HomePage() {
           <div className="parallax-orb absolute bottom-[10%] left-[5%] w-[500px] h-[500px] bg-blue-900/10 blur-[150px] rounded-full" />
         </div>
 
-        <div className="container mx-auto relative z-20 pt-20">
+        <div className="container mx-auto relative z-20 pt-20 pb-16 md:pb-24 lg:pb-32">
           <div className="hero-meta-item mb-10 md:mb-16">
             <div className="inline-flex items-center space-x-3 px-4 py-2 rounded-full bg-white/5 backdrop-blur-md border border-white/10 shadow-2xl">
               <span className="relative flex h-2 w-2">
@@ -434,7 +434,7 @@ export default function HomePage() {
       </section>
 
       {/* --- SECTION: BENTO GRID REFINEMENT --- */}
-      <section className="py-24 md:py-48 bg-white relative">
+      <section id="services" className="py-24 md:py-48 bg-white relative">
         <div className="container mx-auto px-6 md:px-12">
           <div className="reveal-text mb-20 md:mb-32 flex flex-col md:flex-row md:items-end justify-between gap-10 md:gap-16">
             <h2 className="text-5xl md:text-8xl lg:text-9xl font-black tracking-tighter leading-[1] md:leading-[0.95] py-2 md:py-4">
@@ -492,38 +492,217 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* --- HORIZONTAL SCROLL: REFINED --- */}
-      <section ref={horizontalRef} className="relative overflow-hidden bg-[#0a0a0a] text-white">
+      {/* --- GLOBAL PARTNERS: REFINED SHOWCASE --- */}
+      <section id="platforms" className="relative py-32 md:py-48 bg-white overflow-hidden">
+        <div className="container mx-auto px-6 md:px-12">
+          {/* Section Header */}
+          <div className="reveal-text max-w-4xl mb-24 md:mb-32">
+            <div className="inline-block mb-6">
+              <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-slate-400">Official Partners</span>
+            </div>
+            <h2 className="text-5xl md:text-7xl lg:text-8xl font-light tracking-tight leading-[1.1] text-slate-900 mb-8">
+              全球顶级<br />营销平台
+            </h2>
+            <p className="text-xl md:text-2xl text-slate-500 font-light leading-relaxed max-w-2xl">
+              与全球领先的广告平台深度合作，为您的业务提供最优质的流量入口。
+            </p>
+          </div>
+
+          {/* Partners Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
+
+            {/* Google */}
+            <div className="bento-card group relative bg-white border border-slate-200/60 rounded-3xl overflow-hidden transition-all duration-500 hover:shadow-[0_20px_60px_-15px_rgba(0,0,0,0.08)] hover:border-slate-300">
+              <div className="absolute inset-0 bg-gradient-to-br from-slate-50/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+              <div className="relative p-12 md:p-14 flex flex-col items-start min-h-[420px]">
+                <div className="mb-auto">
+                  <div className="mb-8 transform group-hover:scale-105 transition-transform duration-500">
+                    <img src="/google_logo.png" alt="Google" className="h-10 md:h-12 object-contain" />
+                  </div>
+
+                  <h3 className="text-sm font-medium text-slate-600 mb-3">Google Ads Platform</h3>
+                  <p className="text-base text-slate-500 leading-relaxed font-light">
+                    全球最大的搜索与展示广告网络，覆盖 90% 以上互联网用户。
+                  </p>
+                </div>
+
+                <div className="mt-12 pt-8 border-t border-slate-100 w-full">
+                  <div className="flex items-baseline gap-2">
+                    <span className="text-3xl font-light text-slate-900">90%+</span>
+                    <span className="text-xs uppercase tracking-wider text-slate-400 font-medium">市场份额</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Meta */}
+            <div className="bento-card group relative bg-white border border-slate-200/60 rounded-3xl overflow-hidden transition-all duration-500 hover:shadow-[0_20px_60px_-15px_rgba(0,0,0,0.08)] hover:border-slate-300">
+              <div className="absolute inset-0 bg-gradient-to-br from-slate-50/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+              <div className="relative p-12 md:p-14 flex flex-col items-start min-h-[420px]">
+                <div className="mb-auto">
+                  <div className="mb-8 transform group-hover:scale-105 transition-transform duration-500">
+                    <img src="/meta_logo.png" alt="Meta" className="h-10 md:h-12 object-contain" />
+                  </div>
+
+                  <h3 className="text-sm font-medium text-slate-600 mb-3">Meta Business Suite</h3>
+                  <p className="text-base text-slate-500 leading-relaxed font-light">
+                    整合 Facebook 与 Instagram，打造社交媒体营销生态闭环。
+                  </p>
+                </div>
+
+                <div className="mt-12 pt-8 border-t border-slate-100 w-full">
+                  <div className="flex items-baseline gap-2">
+                    <span className="text-3xl font-light text-slate-900">3.9B+</span>
+                    <span className="text-xs uppercase tracking-wider text-slate-400 font-medium">月活用户</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* TikTok */}
+            <div className="bento-card group relative bg-white border border-slate-200/60 rounded-3xl overflow-hidden transition-all duration-500 hover:shadow-[0_20px_60px_-15px_rgba(0,0,0,0.08)] hover:border-slate-300">
+              <div className="absolute inset-0 bg-gradient-to-br from-slate-50/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+              <div className="relative p-12 md:p-14 flex flex-col items-start min-h-[420px]">
+                <div className="mb-auto">
+                  <div className="mb-8 transform group-hover:scale-105 transition-transform duration-500">
+                    <img src="/tiktok_logo.png" alt="TikTok" className="h-10 md:h-12 object-contain" />
+                  </div>
+
+                  <h3 className="text-sm font-medium text-slate-600 mb-3">TikTok For Business</h3>
+                  <p className="text-base text-slate-500 leading-relaxed font-light">
+                    短视频营销领导者，助力品牌触达年轻消费群体。
+                  </p>
+                </div>
+
+                <div className="mt-12 pt-8 border-t border-slate-100 w-full">
+                  <div className="flex items-baseline gap-2">
+                    <span className="text-3xl font-light text-slate-900">1.6B+</span>
+                    <span className="text-xs uppercase tracking-wider text-slate-400 font-medium">全球用户</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          {/* Bottom Tagline */}
+          <div className="reveal-text mt-24 md:mt-32 text-center">
+            <p className="text-sm uppercase tracking-[0.3em] text-slate-400 font-medium">
+              Trusted by global brands
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* --- HORIZONTAL SCROLL: CINEMATIC LUXURY EDITION --- */}
+      <section id="cases" ref={horizontalRef} className="relative overflow-hidden bg-[#0a0a0a] text-white">
+        {/* Scroll Progress Indicator */}
+        <div className="fixed top-0 left-0 right-0 h-1 bg-slate-900 z-50">
+          <div className="scroll-progress h-full bg-gradient-to-r from-blue-600 via-blue-400 to-blue-600 origin-left scale-x-0" />
+        </div>
+
+        {/* Ambient Background Effects */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="floating-element absolute top-[20%] left-[10%] w-96 h-96 bg-blue-600/5 blur-[150px] rounded-full" />
+          <div className="floating-element absolute bottom-[30%] right-[15%] w-[500px] h-[500px] bg-purple-600/5 blur-[180px] rounded-full" />
+        </div>
+
         <div className="flex h-screen w-[300vw]">
-          {/* Slide 1 */}
+          {/* Slide 1 - Growth Model */}
           <div className="h-section w-screen h-full flex items-center justify-center px-6 md:px-32 relative">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-32 items-center w-full max-w-7xl">
-              <div>
-                <span className="text-blue-500 font-black tracking-[0.4em] uppercase text-[10px] mb-8 md:mb-10 block">System 01 / Scaling Model</span>
-                <h2 className="text-5xl md:text-[8vw] lg:text-[7vw] font-black tracking-tighter leading-[1.1] mb-8 md:mb-12 py-1 md:py-2">增长模型</h2>
-                <p className="text-xl md:text-2xl text-slate-400 font-medium leading-relaxed max-w-xl">
+            {/* Animated Grid Background */}
+            <div className="absolute inset-0 opacity-[0.03]">
+              <div className="absolute inset-0 bg-[linear-gradient(to_right,#3b82f6_1px,transparent_1px),linear-gradient(to_bottom,#3b82f6_1px,transparent_1px)] bg-[size:4rem_4rem]" />
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-20 md:gap-32 items-center w-full max-w-7xl">
+              <div className="reveal-text">
+                <span className="text-blue-500 font-black tracking-[0.4em] uppercase text-[10px] mb-8 md:mb-10 block inline-flex items-center gap-3">
+                  <span className="h-px w-8 bg-blue-500" />
+                  System 01 / Scaling Model
+                </span>
+                <h2 className="split-text text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter leading-[1.05] mb-8 md:mb-12 py-1 md:py-2 bg-gradient-to-br from-white via-white to-blue-400 bg-clip-text text-transparent whitespace-nowrap">
+                  增长模型
+                </h2>
+                <p className="text-xl md:text-2xl text-slate-400 font-medium leading-relaxed max-w-xl mb-10">
                   我们通过精细化运营与扩量逻辑，协助业务在全球不同市场快速落地。
                 </p>
+
+                {/* Feature Pills */}
+                <div className="flex flex-wrap gap-3">
+                  {['AI优化', '实时分析', '多市场'].map((tag, i) => (
+                    <span key={i} className="tag-item px-5 py-2.5 rounded-full bg-blue-600/10 border border-blue-500/20 text-blue-400 text-xs font-black uppercase tracking-wider backdrop-blur-sm">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
               </div>
-              <div className="relative aspect-[4/5] bg-slate-900/50 rounded-[4rem] overflow-hidden border border-slate-800 flex flex-col group">
-                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2015&auto=format&fit=crop" alt="Strategy" className="absolute inset-0 w-full h-full object-cover opacity-40 group-hover:scale-110 transition-transform duration-[3s]" />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent" />
-                <div className="relative z-10 p-12 h-full flex flex-col">
-                  <div className="flex justify-between items-start mb-12">
-                    <div className="h-12 w-12 rounded-full border border-slate-700 glass flex items-center justify-center">
-                      <Zap className="h-6 w-6 text-blue-500" />
+
+              {/* Enhanced Stats Card */}
+              <div className="relative aspect-[4/5] bg-gradient-to-br from-slate-900/80 to-slate-950/80 rounded-[4rem] overflow-hidden border border-slate-800/50 flex flex-col group backdrop-blur-xl shadow-2xl shadow-blue-900/20">
+                {/* Background Image with Parallax */}
+                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2015&auto=format&fit=crop" alt="Strategy" className="parallax-image absolute inset-0 w-full h-full object-cover opacity-30 group-hover:scale-110 transition-transform duration-[4s] ease-out" />
+
+                {/* Gradient Overlays */}
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/50 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 via-transparent to-purple-600/10 opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
+
+                {/* Animated Corner Accents */}
+                <div className="absolute top-0 right-0 w-48 h-48 bg-blue-500/20 blur-[100px] group-hover:blur-[80px] transition-all duration-1000" />
+                <div className="absolute bottom-0 left-0 w-64 h-64 bg-purple-500/10 blur-[120px]" />
+
+                <div className="relative z-10 p-10 md:p-12 h-full flex flex-col">
+                  {/* Header Stats */}
+                  <div className="flex justify-between items-start mb-12 md:mb-16">
+                    <div className="h-14 w-14 md:h-16 md:w-16 rounded-2xl border-2 border-slate-700/50 bg-slate-900/50 backdrop-blur-md flex items-center justify-center group-hover:border-blue-500/50 group-hover:bg-blue-950/30 transition-all duration-700 shadow-lg">
+                      <Zap className="h-7 w-7 md:h-8 md:w-8 text-blue-500 group-hover:scale-110 transition-transform duration-500" />
                     </div>
                     <div className="text-right">
-                      <div className="text-4xl font-black">+240%</div>
-                      <div className="text-[10px] text-slate-500 uppercase tracking-widest">Efficiency Lift</div>
+                      <div className="text-5xl md:text-6xl font-black bg-gradient-to-br from-white to-blue-400 bg-clip-text text-transparent mb-2">+240%</div>
+                      <div className="text-[10px] text-slate-500 uppercase tracking-[0.3em] font-black">Efficiency Lift</div>
                     </div>
                   </div>
-                  <div className="flex-1 flex flex-col justify-end space-y-6">
-                    {[1, 2, 3].map(i => (
-                      <div key={i} className="h-px w-full bg-gradient-to-r from-blue-500/50 to-transparent" />
+
+                  {/* Animated Data Bars */}
+                  <div className="flex-1 flex flex-col justify-end space-y-5 md:space-y-6">
+                    {[
+                      { width: '75%', label: 'ROI' },
+                      { width: '60%', label: 'Conversion' },
+                      { width: '85%', label: 'Reach' }
+                    ].map((bar, i) => (
+                      <div key={i} className="relative">
+                        <div className="h-2 w-full bg-slate-800/50 rounded-full overflow-hidden backdrop-blur-sm">
+                          <div
+                            className="h-full bg-gradient-to-r from-blue-500 via-blue-400 to-blue-500 rounded-full relative overflow-hidden"
+                            style={{ width: bar.width }}
+                          >
+                            <div className="absolute inset-0 bg-white/20 animate-pulse" />
+                          </div>
+                        </div>
+                        <span className="text-[9px] text-slate-600 uppercase tracking-wider font-bold mt-1.5 block">{bar.label}</span>
+                      </div>
                     ))}
-                    <div className="h-32 w-full bg-blue-600/10 rounded-3xl border border-blue-500/20 relative overflow-hidden backdrop-blur-md">
-                      <div className="absolute inset-0 bg-blue-600/20 animate-pulse" />
+
+                    {/* Featured Metric Card */}
+                    <div className="h-36 md:h-40 w-full bg-gradient-to-br from-blue-600/20 to-blue-900/20 rounded-3xl border border-blue-500/30 relative overflow-hidden backdrop-blur-md shadow-xl mt-4">
+                      <div className="absolute inset-0 bg-gradient-to-br from-blue-400/10 to-transparent animate-pulse" />
+                      <div className="absolute top-0 right-0 w-32 h-32 bg-blue-400/20 rounded-full blur-[60px]" />
+                      <div className="relative p-6 h-full flex flex-col justify-between">
+                        <div className="flex items-center gap-2">
+                          <Activity className="h-4 w-4 text-blue-400" />
+                          <span className="text-[9px] uppercase tracking-widest text-blue-400/80 font-black">Live Performance</span>
+                        </div>
+                        <div className="flex items-end justify-between">
+                          <div>
+                            <div className="text-3xl md:text-4xl font-black text-white mb-1">7.2M</div>
+                            <div className="text-[10px] text-slate-500 uppercase tracking-wider font-bold">Active Users</div>
+                          </div>
+                          <LineChart className="h-12 w-12 md:h-16 md:w-16 text-blue-500/30" />
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -531,55 +710,144 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* Slide 2 */}
-          <div className="h-section w-screen h-full flex items-center justify-center px-6 md:px-32 bg-blue-600 relative overflow-hidden">
-            <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_center,_#fff_1px,_transparent_0)] bg-[length:40px_40px]" />
+          {/* Slide 2 - Technical Edge */}
+          <div className="h-section w-screen h-full flex items-center justify-center px-6 md:px-32 bg-gradient-to-br from-blue-600 via-blue-600 to-blue-700 relative overflow-hidden">
+            {/* Animated Patterns */}
+            <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_center,_#fff_1px,_transparent_1px)] bg-[length:40px_40px]" />
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_transparent_0%,_#1e40af_100%)] opacity-30" />
+
+            {/* Floating Orbs */}
+            <div className="floating-element absolute top-[15%] left-[10%] w-72 h-72 bg-white/5 rounded-full blur-[100px]" />
+            <div className="floating-element absolute bottom-[20%] right-[12%] w-96 h-96 bg-white/5 rounded-full blur-[120px]" />
+
             <div className="max-w-6xl text-center relative z-10">
-              <span className="text-white/40 font-black tracking-[0.4em] uppercase text-[10px] mb-10 md:mb-12 block">System 02 / Technical Edge</span>
-              <h2 className="text-5xl md:text-[10vw] lg:text-[9vw] font-black tracking-tighter leading-[1.1] mb-12 md:mb-16 py-2 md:py-4 uppercase">技术驱动 <br /> <span className="text-slate-900">深度洞察</span></h2>
-              <div className="flex flex-wrap justify-center gap-10 md:gap-20">
-                <div className="flex flex-col items-center">
-                  <div className="h-24 w-24 rounded-full bg-white/10 backdrop-blur-xl flex items-center justify-center mb-6">
-                    <Cpu className="h-10 w-10 text-white" />
+              <span className="text-white/50 font-black tracking-[0.4em] uppercase text-[10px] mb-10 md:mb-12 block inline-flex items-center gap-3 mx-auto">
+                <span className="h-px w-12 bg-white/30" />
+                System 02 / Technical Edge
+                <span className="h-px w-12 bg-white/30" />
+              </span>
+
+              <h2 className="text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-black tracking-tighter leading-[1.05] mb-16 md:mb-20 py-2 md:py-4 uppercase">
+                <span className="block">技术驱动</span>
+                <span className="block bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 bg-clip-text text-transparent drop-shadow-2xl">深度洞察</span>
+              </h2>
+
+              {/* Enhanced Feature Grid */}
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 mb-16">
+                {[
+                  { icon: Cpu, label: 'AI Intelligence', metric: '99.9%' },
+                  { icon: Target, label: 'Precision Targeting', metric: '70B+' },
+                  { icon: BarChart4, label: 'Real-time Analytics', metric: '< 100ms' },
+                  { icon: Compass, label: 'Smart Navigation', metric: '200+' }
+                ].map((item, i) => (
+                  <div key={i} className="expertise-item flex flex-col items-center group">
+                    <div className="h-24 w-24 md:h-28 md:w-28 rounded-3xl bg-white/10 backdrop-blur-xl border border-white/20 flex items-center justify-center mb-6 group-hover:bg-white/20 group-hover:scale-110 transition-all duration-500 shadow-xl">
+                      <item.icon className="h-10 w-10 md:h-12 md:w-12 text-white" />
+                    </div>
+                    <span className="text-2xl md:text-3xl font-black text-white mb-2">{item.metric}</span>
+                    <span className="text-[10px] font-black tracking-widest uppercase text-white/60">{item.label}</span>
                   </div>
-                  <span className="text-[10px] font-black tracking-widest uppercase text-white/60">Automated Intelligence</span>
-                </div>
-                <div className="flex flex-col items-center">
-                  <div className="h-24 w-24 rounded-full bg-white/10 backdrop-blur-xl flex items-center justify-center mb-6">
-                    <Target className="h-10 w-10 text-white" />
-                  </div>
-                  <span className="text-[10px] font-black tracking-widest uppercase text-white/60">Cross-Platform Sync</span>
-                </div>
+                ))}
+              </div>
+
+              {/* Tech Stack Pills */}
+              <div className="flex flex-wrap justify-center gap-4">
+                {['Machine Learning', 'Big Data', 'Cloud Native', 'Real-time Processing'].map((tech, i) => (
+                  <span key={i} className="tag-item px-6 py-3 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white text-xs font-black uppercase tracking-wider hover:bg-white/20 transition-all duration-300">
+                    {tech}
+                  </span>
+                ))}
               </div>
             </div>
           </div>
 
-          {/* Slide 3 */}
+          {/* Slide 3 - Global Reach */}
           <div className="h-section w-screen h-full flex items-center justify-center px-6 md:px-32 relative">
-             <div className="grid grid-cols-1 lg:grid-cols-12 gap-24 items-center w-full max-w-7xl">
+            {/* Dynamic Grid */}
+            <div className="absolute inset-0 opacity-[0.02]">
+              <div className="absolute inset-0 bg-[linear-gradient(to_right,#fff_1px,transparent_1px),linear-gradient(to_bottom,#fff_1px,transparent_1px)] bg-[size:6rem_6rem]" />
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 md:gap-24 items-center w-full max-w-7xl">
               <div className="lg:col-span-7 order-2 lg:order-1">
-                <div className="relative aspect-video glass dark-glass rounded-[3rem] overflow-hidden border border-white/5 group">
-                  <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop" alt="Global Network" className="absolute inset-0 w-full h-full object-cover opacity-30 group-hover:scale-125 transition-transform duration-[5s]" />
-                  <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-transparent" />
-                  <div className="relative z-10 p-16 h-full flex flex-col justify-between">
+                {/* Enhanced Globe Card */}
+                <div className="relative aspect-video bg-gradient-to-br from-slate-900/90 to-slate-950/90 rounded-[3rem] md:rounded-[4rem] overflow-hidden border border-white/10 group backdrop-blur-xl shadow-2xl">
+                  <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop" alt="Global Network" className="parallax-image absolute inset-0 w-full h-full object-cover opacity-30 group-hover:scale-125 transition-transform duration-[5s]" />
+
+                  {/* Gradient Layers */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 via-transparent to-purple-500/20" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent" />
+
+                  {/* Animated Scan Lines */}
+                  <div className="absolute inset-0 opacity-10">
+                    <div className="h-full w-full bg-[repeating-linear-gradient(0deg,transparent,transparent_2px,#3b82f6_2px,#3b82f6_4px)] animate-pulse" />
+                  </div>
+
+                  <div className="relative z-10 p-12 md:p-16 h-full flex flex-col justify-between">
+                    {/* Top Stats */}
                     <div className="space-y-4">
-                      <div className="h-2 w-32 bg-blue-600 rounded-full" />
-                      <div className="h-2 w-48 bg-slate-800 rounded-full" />
+                      <div className="flex items-center gap-4 mb-6">
+                        <div className="h-2 w-32 bg-blue-600 rounded-full shadow-lg shadow-blue-500/50" />
+                        <span className="text-blue-400 text-xs font-black uppercase tracking-wider">Active</span>
+                      </div>
+                      <div className="flex items-center gap-4">
+                        <div className="h-2 w-48 bg-slate-800 rounded-full" />
+                        <span className="text-slate-600 text-xs font-black uppercase tracking-wider">Expanding</span>
+                      </div>
                     </div>
-                    <Globe className="h-48 w-48 text-blue-600/20 absolute -right-12 -bottom-12" />
+
+                    {/* Floating Globe Icon */}
+                    <Globe className="floating-element h-48 w-48 md:h-64 md:w-64 text-blue-600/20 absolute -right-12 -bottom-12 group-hover:text-blue-500/30 transition-colors duration-1000" />
+
+                    {/* Bottom Content */}
                     <div className="relative z-10">
-                      <div className="text-6xl font-black mb-4 tracking-tighter uppercase">GLOBAL</div>
-                      <div className="text-sm font-medium text-slate-500 tracking-widest uppercase">Reach without limits</div>
+                      <div className="text-6xl md:text-7xl font-black mb-4 tracking-tighter uppercase bg-gradient-to-br from-white to-blue-400 bg-clip-text text-transparent">
+                        GLOBAL
+                      </div>
+                      <div className="text-sm md:text-base font-bold text-slate-500 tracking-widest uppercase flex items-center gap-3">
+                        <span className="h-px w-8 bg-slate-700" />
+                        Reach without limits
+                      </div>
+
+                      {/* Region Pills */}
+                      <div className="flex flex-wrap gap-2 mt-8">
+                        {['APAC', 'EMEA', 'AMER'].map((region, i) => (
+                          <span key={i} className="tag-item px-4 py-2 rounded-full bg-slate-900/80 border border-slate-700/50 text-slate-400 text-[10px] font-black uppercase tracking-wider backdrop-blur-sm">
+                            {region}
+                          </span>
+                        ))}
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-              <div className="lg:col-span-5 order-1 lg:order-2">
-                <span className="text-blue-500 font-black tracking-[0.4em] uppercase text-[10px] mb-8 md:mb-10 block">System 03 / Global Resource</span>
-                <h2 className="text-5xl md:text-8xl lg:text-9xl font-black tracking-tighter leading-[1.1] mb-8 md:mb-12 py-2 md:py-4 uppercase">全球足迹</h2>
-                <p className="text-xl md:text-2xl text-slate-400 font-medium leading-relaxed">
+
+              <div className="lg:col-span-5 order-1 lg:order-2 reveal-text">
+                <span className="text-blue-500 font-black tracking-[0.4em] uppercase text-[10px] mb-8 md:mb-10 block inline-flex items-center gap-3">
+                  <span className="h-px w-8 bg-blue-500" />
+                  System 03 / Global Resource
+                </span>
+                <h2 className="split-text text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter leading-[1.05] mb-8 md:mb-12 py-2 md:py-4 uppercase bg-gradient-to-br from-white via-white to-blue-400 bg-clip-text text-transparent">
+                  全球足迹
+                </h2>
+                <p className="text-xl md:text-2xl text-slate-400 font-medium leading-relaxed mb-10">
                   覆盖主流媒体平台与新兴流量枢纽。我们的资源池帮助您打破地域限制。
                 </p>
+
+                {/* Stats Grid */}
+                <div className="grid grid-cols-2 gap-6">
+                  {[
+                    { value: '200+', label: 'Countries' },
+                    { value: '7B+', label: 'Devices' },
+                    { value: '50+', label: 'Platforms' },
+                    { value: '24/7', label: 'Support' }
+                  ].map((stat, i) => (
+                    <div key={i} className="expertise-item p-6 rounded-2xl bg-slate-900/30 border border-slate-800/50 backdrop-blur-sm">
+                      <div className="text-3xl md:text-4xl font-black text-white mb-2">{stat.value}</div>
+                      <div className="text-[10px] text-slate-500 uppercase tracking-widest font-bold">{stat.label}</div>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
@@ -614,7 +882,7 @@ export default function HomePage() {
       </section>
 
       {/* --- EXPERTISE MATRIX: LUXURY REFINEMENT --- */}
-      <section className="py-32 md:py-64 bg-slate-50">
+      <section id="about" className="py-32 md:py-64 bg-slate-50">
         <div className="container mx-auto px-6 md:px-12">
           <div className="reveal-text grid grid-cols-1 lg:grid-cols-12 gap-10 md:gap-20 mb-20 md:mb-40">
             <div className="lg:col-span-8">
