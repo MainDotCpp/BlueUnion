@@ -26,10 +26,13 @@ gsap.registerPlugin(ScrollTrigger);
 export default function HomePage() {
   const containerRef = useRef<HTMLDivElement>(null);
   const horizontalRef = useRef<HTMLDivElement>(null);
+  const magneticBtnRef = useRef<HTMLAnchorElement>(null);
+  const spotlightRef = useRef<HTMLDivElement>(null);
+  const cursorDotRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // 1. Hero Reveal
+      // 1. Hero Reveal Animation with Enhanced Timing
       const tl = gsap.timeline();
       tl.from('.hero-heading span', {
         y: 120,
@@ -38,14 +41,121 @@ export default function HomePage() {
         duration: 1.5,
         ease: 'power4.out'
       })
-      .from('.hero-meta', {
+      .from('.hero-meta-item', {
         opacity: 0,
-        y: 20,
+        y: 30,
+        stagger: 0.1,
         duration: 1,
         ease: 'power3.out'
       }, '-=1');
 
-      // 2. Horizontal Scroll Section
+      // 2. Statistical Counters with Bounce Effect
+      const stats = gsap.utils.toArray('.stat-number');
+      stats.forEach((stat: any) => {
+        const endValue = parseInt(stat.innerText);
+        gsap.from(stat, {
+          textContent: 0,
+          duration: 2.5,
+          ease: 'power4.out',
+          scrollTrigger: {
+            trigger: stat,
+            start: 'top 95%',
+          },
+          snap: { textContent: 1 },
+          onUpdate: function() {
+            stat.innerHTML = Math.ceil(stat.textContent) + (stat.dataset.suffix || '');
+          }
+        });
+
+        // Add scale bounce effect
+        gsap.from(stat, {
+          scale: 0.5,
+          duration: 1,
+          ease: 'back.out(1.7)',
+          scrollTrigger: {
+            trigger: stat,
+            start: 'top 95%',
+          }
+        });
+      });
+
+      // 3. Magnetic Button with Enhanced Interaction
+      const mBtn = magneticBtnRef.current;
+      if (mBtn) {
+        const mText = mBtn.querySelector('span');
+        mBtn.addEventListener('mousemove', (e) => {
+          const rect = mBtn.getBoundingClientRect();
+          const x = e.clientX - rect.left - rect.width / 2;
+          const y = e.clientY - rect.top - rect.height / 2;
+
+          gsap.to(mBtn, {
+            x: x * 0.3,
+            y: y * 0.3,
+            duration: 0.6,
+            ease: 'power2.out'
+          });
+          if (mText) {
+            gsap.to(mText, {
+              x: x * 0.15,
+              y: y * 0.15,
+              duration: 0.6,
+              ease: 'power2.out'
+            });
+          }
+        });
+
+        mBtn.addEventListener('mouseleave', () => {
+          gsap.to([mBtn, mText], {
+            x: 0,
+            y: 0,
+            duration: 1,
+            ease: 'elastic.out(1, 0.3)'
+          });
+        });
+      }
+
+      // 4. Custom Cursor Trail Effect
+      const handleMouseMove = (e: MouseEvent) => {
+        if (spotlightRef.current) {
+          gsap.to(spotlightRef.current, {
+            x: e.clientX,
+            y: e.clientY,
+            duration: 0.8,
+            ease: 'power2.out'
+          });
+        }
+
+        if (cursorDotRef.current) {
+          gsap.to(cursorDotRef.current, {
+            x: e.clientX,
+            y: e.clientY,
+            duration: 0.15,
+            ease: 'power2.out'
+          });
+        }
+      };
+      window.addEventListener('mousemove', handleMouseMove);
+
+      // 5. Background Video & Elements Parallax
+      gsap.to('.hero-video', {
+        scale: 1.2,
+        scrollTrigger: {
+          trigger: '.hero-video',
+          start: 'top top',
+          scrub: true
+        }
+      });
+
+      gsap.to('.parallax-orb', {
+        yPercent: -50,
+        xPercent: 20,
+        scrollTrigger: {
+          trigger: containerRef.current,
+          scrub: 1.5
+        }
+      });
+
+      // 6. Horizontal Scroll Section with Progress Indicator
       if (horizontalRef.current) {
         const sections = gsap.utils.toArray('.h-section');
         gsap.to(sections, {
@@ -56,34 +166,169 @@ export default function HomePage() {
             pin: true,
             scrub: 1,
             snap: 1 / (sections.length - 1),
-            end: () => `+=${horizontalRef.current?.offsetWidth || 2000}`
+            end: () => `+=${horizontalRef.current?.offsetWidth || 2000}`,
+            onUpdate: (self) => {
+              // Update progress indicator if exists
+              const progress = document.querySelector('.scroll-progress');
+              if (progress) {
+                gsap.to(progress, { scaleX: self.progress, duration: 0.1 });
+              }
+            }
           }
         });
       }
 
-      // 3. Reveal elements on scroll
-      gsap.utils.toArray('.reveal-text').forEach((elem: any) => {
+      // 7. Grid & Content Reveal with Stagger
+      gsap.utils.toArray('.reveal-text, .bento-card').forEach((elem: any) => {
         gsap.from(elem, {
           scrollTrigger: {
             trigger: elem,
+            start: 'top 85%',
+          },
+          y: 80,
+          opacity: 0,
+          rotationX: -10,
+          duration: 1.5,
+          ease: 'expo.out'
+        });
+      });
+
+      // 8. Bento Card 3D Tilt Effect
+      const bentoCards = gsap.utils.toArray('.bento-card');
+      bentoCards.forEach((card: any) => {
+        card.addEventListener('mousemove', (e: MouseEvent) => {
+          const rect = card.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          const centerX = rect.width / 2;
+          const centerY = rect.height / 2;
+          const rotateX = (y - centerY) / 10;
+          const rotateY = (centerX - x) / 10;
+
+          gsap.to(card, {
+            rotationX: rotateX,
+            rotationY: rotateY,
+            duration: 0.5,
+            ease: 'power2.out',
+            transformPerspective: 1000
+          });
+        });
+
+        card.addEventListener('mouseleave', () => {
+          gsap.to(card, {
+            rotationX: 0,
+            rotationY: 0,
+            duration: 0.8,
+            ease: 'elastic.out(1, 0.3)'
+          });
+        });
+      });
+
+      // 9. Process Step Icon Animation
+      gsap.utils.toArray('.process-step-icon').forEach((icon: any) => {
+        gsap.from(icon, {
+          scrollTrigger: {
+            trigger: icon,
             start: 'top 90%',
           },
-          y: 60,
+          rotation: -180,
+          scale: 0,
+          duration: 1.2,
+          ease: 'back.out(1.7)'
+        });
+      });
+
+      // 10. Image Parallax Effects
+      gsap.utils.toArray('.parallax-image').forEach((img: any) => {
+        gsap.to(img, {
+          yPercent: 30,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: img,
+            start: 'top bottom',
+            end: 'bottom top',
+            scrub: 1
+          }
+        });
+      });
+
+      // 11. Floating Animation for Decorative Elements
+      gsap.to('.floating-element', {
+        y: -30,
+        duration: 3,
+        ease: 'sine.inOut',
+        repeat: -1,
+        yoyo: true,
+        stagger: 0.5
+      });
+
+      // 12. Text Reveal with Split Effect
+      gsap.utils.toArray('.split-text').forEach((text: any) => {
+        const chars = text.textContent.split('');
+        text.innerHTML = chars.map((char: string) =>
+          `<span style="display:inline-block">${char === ' ' ? '&nbsp;' : char}</span>`
+        ).join('');
+
+        gsap.from(text.children, {
+          scrollTrigger: {
+            trigger: text,
+            start: 'top 85%',
+          },
+          opacity: 0,
+          y: 50,
+          rotationX: -90,
+          stagger: 0.02,
+          duration: 0.8,
+          ease: 'back.out(1.7)'
+        });
+      });
+
+      // 13. Expertise Item Slide-In Animation
+      gsap.utils.toArray('.expertise-item').forEach((item: any, index: number) => {
+        gsap.from(item, {
+          scrollTrigger: {
+            trigger: item,
+            start: 'top 90%',
+          },
+          x: index % 2 === 0 ? -100 : 100,
           opacity: 0,
           duration: 1.2,
           ease: 'power3.out'
         });
       });
 
-      // 4. Parallax Image effects
-      gsap.to('.parallax-bg', {
-        yPercent: 30,
+      // 14. Tag Cloud Scatter Animation
+      gsap.utils.toArray('.tag-item').forEach((tag: any) => {
+        gsap.from(tag, {
+          scrollTrigger: {
+            trigger: tag,
+            start: 'top 95%',
+          },
+          scale: 0,
+          rotation: 360,
+          duration: 0.8,
+          ease: 'back.out(1.7)',
+          stagger: 0.1
+        });
+      });
+
+      // 15. Scroll Progress Line
+      gsap.to('.progress-line', {
+        scaleX: 1,
+        transformOrigin: 'left',
         ease: 'none',
         scrollTrigger: {
-          trigger: '.parallax-container',
-          scrub: true
+          trigger: containerRef.current,
+          start: 'top top',
+          end: 'bottom bottom',
+          scrub: 0.5
         }
       });
+
+      return () => {
+        window.removeEventListener('mousemove', handleMouseMove);
+      };
+
     }, containerRef);
 
     return () => ctx.revert();
@@ -92,77 +337,95 @@ export default function HomePage() {
   return (
     <div ref={containerRef} className="bg-white text-[#0a0a0a] overflow-x-hidden">
 
-      {/* --- HERO: ATMOSPHERIC & KINETIC --- */}
-      <section className="relative min-h-[90dvh] flex flex-col justify-center px-6 md:px-12 overflow-hidden">
-        {/* Background Elements */}
-        <div className="absolute inset-0 z-0">
-          <div className="absolute top-[-10%] left-[-10%] w-[60%] h-[60%] bg-blue-50/50 blur-[120px] rounded-full animate-pulse" />
-          <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-blue-100/30 blur-[100px] rounded-full" />
+      {/* --- HERO: CINEMATIC VIDEO ARCHITECTURE --- */}
+      <section className="relative min-h-screen flex flex-col justify-center px-6 md:px-12 overflow-hidden bg-[#0a0a0a]">
+        {/* Spotlight Overlay */}
+        <div ref={spotlightRef} className="fixed top-0 left-0 w-[600px] h-[600px] bg-blue-500/10 rounded-full blur-[120px] pointer-events-none z-10 -translate-x-1/2 -translate-y-1/2" />
 
-          {/* Refined Grid */}
-          <div className="absolute inset-0 opacity-[0.03]"
-               style={{ backgroundImage: 'radial-gradient(#000 1px, transparent 0)', backgroundSize: '40px 40px' }} />
+        {/* Video Background Layer */}
+        <div className="absolute inset-0 z-0 overflow-hidden">
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="hero-video absolute inset-0 w-full h-full object-cover opacity-40 scale-105"
+            style={{ filter: 'grayscale(0.3) brightness(0.6)' }}
+          >
+            <source src="/hero-bg.mp4" type="video/mp4" />
+          </video>
+          {/* Advanced Overlays */}
+          <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0a]/90 via-transparent to-[#0a0a0a]" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_transparent_0%,_#0a0a0a_100%)] opacity-70" />
+
+          {/* Decorative Parallax Orbs */}
+          <div className="parallax-orb absolute top-[20%] right-[10%] w-96 h-96 bg-blue-600/10 blur-[150px] rounded-full" />
+          <div className="parallax-orb absolute bottom-[10%] left-[5%] w-[500px] h-[500px] bg-blue-900/10 blur-[150px] rounded-full" />
         </div>
 
-        <div className="container mx-auto relative z-10">
-          <div className="hero-meta mb-16">
-            <div className="inline-flex items-center space-x-3 px-5 py-2 rounded-full glass border border-slate-200/50 shadow-xl shadow-blue-500/5">
+        <div className="container mx-auto relative z-20 pt-20">
+          <div className="hero-meta-item mb-10 md:mb-16">
+            <div className="inline-flex items-center space-x-3 px-4 py-2 rounded-full bg-white/5 backdrop-blur-md border border-white/10 shadow-2xl">
               <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-600"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
               </span>
-              <span className="text-[10px] font-black uppercase tracking-[0.5em] text-slate-800">Growth Architecture v2.0</span>
+              <span className="text-[9px] md:text-[10px] font-black uppercase tracking-[0.5em] text-white/70">Intelligence Systems / 01</span>
             </div>
           </div>
 
-          <div className="max-w-[95vw]">
-            <h1 className="hero-heading flex flex-col font-black tracking-tighter leading-[1.2] md:leading-[1.1] mb-12 md:mb-20">
-              <div className="overflow-hidden py-2">
-                <span className="block text-[4vw] md:text-[3vw] italic font-extralight text-slate-400 tracking-[0.3em] uppercase mb-2 md:mb-4">
-                  Redefining
+          <div className="max-w-full">
+            <h1 className="hero-heading flex flex-col font-black tracking-tighter leading-[0.95] mb-12 md:mb-20 text-white">
+              <div className="overflow-hidden py-1">
+                <span className="block text-2xl md:text-[3vw] italic font-light text-blue-400/80 tracking-[0.2em] uppercase mb-2">
+                  Architecting
                 </span>
               </div>
-              <div className="overflow-hidden py-2 md:py-4">
-                <span className="block text-[13vw] md:text-[8vw] lg:text-[7.5vw]">
+              <div className="overflow-hidden py-1">
+                <span className="block text-[14vw] md:text-[9vw] lg:text-[8.5vw] leading-none uppercase">
                   全球资源
                 </span>
               </div>
-              <div className="overflow-hidden py-2 md:py-4">
-                <span className="block text-[15vw] md:text-[10vw] lg:text-[9.5vw] text-blue-600">
+              <div className="overflow-hidden py-1">
+                <span className="block text-[16vw] md:text-[11vw] lg:text-[10.5vw] text-blue-500 leading-none mix-blend-lighten uppercase">
                   聚合增长
                 </span>
               </div>
             </h1>
           </div>
 
-          <div className="hero-meta grid grid-cols-1 lg:grid-cols-12 gap-12 items-end">
+          <div className="hero-meta-item grid grid-cols-1 lg:grid-cols-12 gap-10 md:gap-12 items-end">
             <div className="lg:col-span-7">
-              <p className="text-xl md:text-3xl font-medium leading-tight text-slate-600 max-w-2xl text-balance">
+              <p className="text-lg md:text-3xl font-medium leading-tight text-white/80 max-w-2xl text-balance">
                 蓝聚出海（BlueUnion）专注于全球数字营销与深度增长。
-                <span className="text-slate-400">我们构建的不仅是流量，更是驱动业务跨越国界的生命力体系。</span>
+                <span className="text-white/30 block md:inline mt-2 md:mt-0">我们构建的不仅是流量，更是驱动业务跨越国界的生命力体系。</span>
               </p>
             </div>
-            <div className="lg:col-span-5 flex flex-col md:items-end gap-10">
-              <Link href="/contact" className="group relative px-14 py-7 bg-[#0a0a0a] text-white rounded-full font-bold text-xl overflow-hidden transition-all duration-500 hover:scale-105 active:scale-95 shadow-2xl shadow-blue-900/20">
-                <span className="relative z-10 flex items-center">
+            <div className="lg:col-span-5 flex flex-col items-start md:items-end gap-10">
+              <Link
+                ref={magneticBtnRef}
+                href="/contact"
+                className="group relative w-full md:w-auto px-10 py-6 md:px-14 md:py-8 bg-white text-[#0a0a0a] rounded-full font-bold text-lg md:text-xl overflow-hidden transition-all duration-500 shadow-[0_20px_50px_rgba(59,130,246,0.3)] text-center"
+              >
+                <span className="relative z-10 flex items-center justify-center">
                   开启增长架构咨询
-                  <ArrowUpRight className="ml-3 h-6 w-6 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-500" />
+                  <ArrowUpRight className="ml-3 h-5 w-5 md:h-6 md:w-6 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-500" />
                 </span>
                 <div className="absolute inset-0 bg-blue-600 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-expo" />
               </Link>
 
-              <div className="flex items-center space-x-10 md:space-x-12 divide-x divide-slate-200">
+              <div className="flex items-center space-x-8 md:space-x-12 divide-x divide-white/10">
                 <div className="flex flex-col">
-                  <span className="text-3xl md:text-4xl font-black tabular-nums">7B+</span>
-                  <span className="text-[9px] uppercase tracking-widest text-slate-400 font-bold mt-1">Devices Reach</span>
+                  <span className="stat-number text-2xl md:text-4xl font-black tabular-nums text-white" data-suffix="B+">7</span>
+                  <span className="text-[8px] md:text-[9px] uppercase tracking-widest text-white/40 font-bold mt-1 text-nowrap">Global Reach</span>
                 </div>
-                <div className="flex flex-col pl-10 md:pl-12">
-                  <span className="text-3xl md:text-4xl font-black tabular-nums">200+</span>
-                  <span className="text-[9px] uppercase tracking-widest text-slate-400 font-bold mt-1">Regions Covered</span>
+                <div className="flex flex-col pl-8 md:pl-12">
+                  <span className="stat-number text-2xl md:text-4xl font-black tabular-nums text-white" data-suffix="+">200</span>
+                  <span className="text-[8px] md:text-[9px] uppercase tracking-widest text-white/40 font-bold mt-1 text-nowrap">Regions</span>
                 </div>
-                <div className="flex flex-col pl-10 md:pl-12">
-                  <span className="text-3xl md:text-4xl font-black tabular-nums">5Y+</span>
-                  <span className="text-[9px] uppercase tracking-widest text-slate-400 font-bold mt-1">Avg. Expertise</span>
+                <div className="flex flex-col pl-8 md:pl-12">
+                  <span className="stat-number text-2xl md:text-4xl font-black tabular-nums text-white" data-suffix="Y+">5</span>
+                  <span className="text-[8px] md:text-[9px] uppercase tracking-widest text-white/40 font-bold mt-1 text-nowrap">Expertise</span>
                 </div>
               </div>
             </div>
@@ -187,7 +450,7 @@ export default function HomePage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 h-full">
-              <div className="md:col-span-2 group relative p-10 md:p-16 bg-slate-50 rounded-[3rem] md:rounded-[4rem] border border-slate-100 hover:bg-white hover:shadow-[0_40px_100px_-20px_rgba(0,0,0,0.05)] transition-all duration-1000 overflow-hidden flex flex-col justify-between min-h-[400px] md:min-h-[500px]">
+              <div className="bento-card md:col-span-2 group relative p-10 md:p-16 bg-slate-50 rounded-[3rem] md:rounded-[4rem] border border-slate-100 hover:bg-white hover:shadow-[0_40px_100px_-20px_rgba(0,0,0,0.05)] transition-all duration-1000 overflow-hidden flex flex-col justify-between min-h-[400px] md:min-h-[500px]">
                 <div className="absolute inset-0 z-0 opacity-0 group-hover:opacity-10 transition-opacity duration-1000">
                   <img src="https://images.unsplash.com/photo-1551288049-bbda38a594a0?q=80&w=2070&auto=format&fit=crop" alt="Analytics" className="w-full h-full object-cover" />
                 </div>
@@ -208,7 +471,7 @@ export default function HomePage() {
               <div className="absolute bottom-[-10%] right-[-10%] w-96 h-96 bg-blue-50/50 rounded-full blur-3xl group-hover:scale-125 transition-transform duration-1000" />
             </div>
 
-              <div className="p-10 md:p-16 bg-[#0a0a0a] text-white rounded-[3rem] md:rounded-[4rem] flex flex-col justify-between group relative overflow-hidden">
+              <div className="bento-card p-10 md:p-16 bg-[#0a0a0a] text-white rounded-[3rem] md:rounded-[4rem] flex flex-col justify-between group relative overflow-hidden">
                 <div className="relative z-10">
                   <Layers className="h-10 w-10 md:h-14 md:w-14 text-blue-500 mb-8 md:mb-12" />
                   <h3 className="text-3xl md:text-4xl font-bold mb-6 md:mb-8 leading-tight">结构化规划 <br/><span className="text-blue-500">Risk Mitigation.</span></h3>
@@ -273,7 +536,7 @@ export default function HomePage() {
             <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_center,_#fff_1px,_transparent_0)] bg-[length:40px_40px]" />
             <div className="max-w-6xl text-center relative z-10">
               <span className="text-white/40 font-black tracking-[0.4em] uppercase text-[10px] mb-10 md:mb-12 block">System 02 / Technical Edge</span>
-              <h2 className="text-5xl md:text-[10vw] lg:text-[9vw] font-black tracking-tighter leading-[1.1] mb-12 md:mb-16 py-2 md:py-4">技术驱动 <br /> <span className="text-slate-900">深度洞察</span></h2>
+              <h2 className="text-5xl md:text-[10vw] lg:text-[9vw] font-black tracking-tighter leading-[1.1] mb-12 md:mb-16 py-2 md:py-4 uppercase">技术驱动 <br /> <span className="text-slate-900">深度洞察</span></h2>
               <div className="flex flex-wrap justify-center gap-10 md:gap-20">
                 <div className="flex flex-col items-center">
                   <div className="h-24 w-24 rounded-full bg-white/10 backdrop-blur-xl flex items-center justify-center mb-6">
@@ -305,7 +568,7 @@ export default function HomePage() {
                     </div>
                     <Globe className="h-48 w-48 text-blue-600/20 absolute -right-12 -bottom-12" />
                     <div className="relative z-10">
-                      <div className="text-6xl font-black mb-4 tracking-tighter">GLOBAL</div>
+                      <div className="text-6xl font-black mb-4 tracking-tighter uppercase">GLOBAL</div>
                       <div className="text-sm font-medium text-slate-500 tracking-widest uppercase">Reach without limits</div>
                     </div>
                   </div>
@@ -313,7 +576,7 @@ export default function HomePage() {
               </div>
               <div className="lg:col-span-5 order-1 lg:order-2">
                 <span className="text-blue-500 font-black tracking-[0.4em] uppercase text-[10px] mb-8 md:mb-10 block">System 03 / Global Resource</span>
-                <h2 className="text-5xl md:text-8xl lg:text-9xl font-black tracking-tighter leading-[1.1] mb-8 md:mb-12 py-2 md:py-4">全球足迹</h2>
+                <h2 className="text-5xl md:text-8xl lg:text-9xl font-black tracking-tighter leading-[1.1] mb-8 md:mb-12 py-2 md:py-4 uppercase">全球足迹</h2>
                 <p className="text-xl md:text-2xl text-slate-400 font-medium leading-relaxed">
                   覆盖主流媒体平台与新兴流量枢纽。我们的资源池帮助您打破地域限制。
                 </p>
@@ -328,7 +591,7 @@ export default function HomePage() {
         <div className="container mx-auto px-6 md:px-12">
           <div className="reveal-text mb-20 md:mb-32">
             <span className="text-blue-600 font-black tracking-[0.4em] uppercase text-[10px] mb-8 block">Methodology / 04</span>
-            <h2 className="text-5xl md:text-8xl font-black tracking-tighter leading-none mb-12">
+            <h2 className="text-5xl md:text-8xl font-black tracking-tighter leading-none mb-12 uppercase">
               出海增长 <br />
               <span className="text-slate-200 italic font-thin">Eight-Step Blueprint.</span>
             </h2>
@@ -402,9 +665,9 @@ export default function HomePage() {
           <div className="reveal-text max-w-7xl mx-auto">
             <h2 className="text-4xl md:text-[10vw] lg:text-[9vw] font-black text-white tracking-tighter leading-[1.1] mb-12 md:mb-20 uppercase py-4 md:py-6">
               资源为基础 <br />
-              <span className="text-blue-600 block">增长为结果</span>
+              <span className="text-blue-600 block uppercase">增长为结果</span>
             </h2>
-            <Link href="/contact" className="inline-flex items-center gap-4 md:gap-8 px-10 py-6 md:px-20 md:py-10 bg-white text-[#0a0a0a] rounded-full text-xl md:text-3xl font-black hover:bg-blue-600 hover:text-white transition-all duration-700 hover:scale-105 active:scale-95 group shadow-[0_30px_100px_rgba(37,99,235,0.3)]">
+            <Link href="/contact" className="inline-flex items-center gap-4 md:gap-8 px-10 py-6 md:px-20 md:py-10 bg-white text-[#0a0a0a] rounded-full text-xl md:text-3xl font-black hover:bg-blue-600 hover:text-white transition-all duration-700 hover:scale-105 active:scale-95 group shadow-[0_30px_100px_rgba(37,99,235,0.3)] uppercase">
               启动增长引擎 <ArrowUpRight className="h-6 w-6 md:h-12 md:w-12 group-hover:rotate-45 transition-transform duration-700" />
             </Link>
           </div>
