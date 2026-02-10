@@ -1,0 +1,147 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ===== Global Design System ===== */
+
+:root {
+  /* Primary Brand Colors */
+  --primary-purple: #722ed1;
+  --primary-purple-dark: #531dab;
+  --primary-purple-light: #9254de;
+
+  /* Semantic Colors */
+  --success: #52c41a;
+  --warning: #faad14;
+  --error: #ff4d4f;
+  --gray-50: #fafafa;
+  --gray-600: #666;
+  --gray-900: #1a1a1a;
+
+  /* Shadows */
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --shadow-primary: 0 4px 12px rgba(114, 46, 209, 0.3);
+
+  /* Border Radius */
+  --radius-md: 8px;
+
+  /* Transitions */
+  --transition-base: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Reset for Ant Design compatibility */
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
+    'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
+    'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Code/Monospace Elements */
+code, pre, .monospace {
+  font-family: 'JetBrains Mono', 'SF Mono', Monaco, 'Cascadia Code', monospace;
+}
+
+/* Selection */
+::selection {
+  background: rgba(114, 46, 209, 0.2);
+  color: var(--gray-900);
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f5f5f5;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #d9d9d9;
+  border-radius: 4px;
+  transition: background 0.2s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-purple-light);
+}
+
+/* ===== Refine Component Fixes ===== */
+
+/* Fix Create/Edit/Show page header layout */
+.ant-page-header {
+  padding: 16px 24px !important;
+}
+
+.ant-page-header-heading {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  flex-wrap: nowrap !important;
+}
+
+.ant-page-header-heading-left {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  flex: 1 !important;
+  min-width: 0 !important;
+}
+
+.ant-page-header-heading-title {
+  font-size: 20px !important;
+  font-weight: 600 !important;
+  margin: 0 !important;
+  line-height: 1.4 !important;
+}
+
+.ant-page-header-back {
+  margin-right: 0 !important;
+}
+
+.ant-page-header-heading-extra {
+  margin-left: auto !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  flex-shrink: 0 !important;
+}
+
+/* Ensure breadcrumb doesn't break layout */
+.ant-page-header-heading-sub-title {
+  margin: 0 !important;
+}
+
+/* Card improvements */
+.ant-card {
+  border-radius: var(--radius-md) !important;
+  box-shadow: var(--shadow-md) !important;
+}
+
+.ant-card-head {
+  border-bottom: 1px solid #f0f0f0 !important;
+}
+
+/* Form improvements */
+.ant-form-vertical .ant-form-item-label > label {
+  font-weight: 500 !important;
+  color: var(--gray-900) !important;
+}
+
+

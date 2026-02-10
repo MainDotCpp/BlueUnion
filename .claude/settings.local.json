@@ -12,7 +12,30 @@
       "Bash(kill:*)",
       "Bash(pnpm dev:*)",
       "Bash(curl:*)",
-      "WebFetch(domain:www.bluesea.global)"
+      "WebFetch(domain:www.bluesea.global)",
+      "Bash(pnpm approve-builds:*)",
+      "Bash(pnpm rebuild:*)",
+      "Bash(pnpm db:generate:*)",
+      "Bash(pnpm --filter @blueunion/database db:generate:*)",
+      "Bash(pnpm --filter @blueunion/database db:push:*)",
+      "Bash(npx prisma db push:*)",
+      "Bash(DATABASE_URL=\"postgresql://postgres:Haishi@1688@141.164.43.115:5432/blueunion\" npx prisma db push:*)",
+      "Bash(pnpm db:seed:*)",
+      "Bash(pnpm --filter @blueunion/database db:seed:*)",
+      "Bash(psql:*)",
+      "Bash(npx tsx:*)",
+      "Bash(node:*)",
+      "Bash(pnpm exec:*)",
+      "Bash(npx prisma generate)",
+      "Bash(pnpm dev:admin)",
+      "Bash(npx prisma db pull:*)",
+      "Bash(pnpm --filter admin dev)",
+      "Bash(lsof:*)",
+      "Bash(xargs kill:*)",
+      "Bash(pnpm --filter admin add:*)",
+      "Bash(npx prisma generate:*)",
+      "Bash(pnpm prisma generate)",
+      "Bash(pnpm typecheck:*)"
     ]
   }
 }

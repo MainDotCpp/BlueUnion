@@ -1,0 +1,53 @@
+import { PrismaClient } from '@prisma/client';
+import * as bcrypt from 'bcrypt';
+
+const prisma = new PrismaClient();
+
+async function main() {
+  console.log('🚀 开始初始化管理员账号...');
+
+  // 1. 创建超级管理员角色
+  const role = await prisma.role.upsert({
+    where: { code: 'SUPER_ADMIN' },
+    update: {},
+    create: {
+      name: '超级管理员',
+      code: 'SUPER_ADMIN',
+      description: '拥有所有权限',
+    },
+  });
+
+  console.log('✅ 角色创建成功:', role.name);
+
+  // 2. 创建默认管理员账号
+  const hashedPassword = await bcrypt.hash('admin123', 10);
+
+  const admin = await prisma.user.upsert({
+    where: { username: 'admin' },
+    update: {},
+    create: {
+      username: 'admin',
+      password: hashedPassword,
+      nickname: '系统管理员',
+      email: 'admin@blueunion.com',
+      status: 'ACTIVE',
+      roleId: role.id,
+    },
+  });
+
+  console.log('✅ 管理员账号创建成功:', admin.username);
+  console.log('');
+  console.log('📋 登录信息：');
+  console.log('   用户名: admin');
+  console.log('   密码: admin123');
+  console.log('   访问地址: http://localhost:3002/login');
+}
+
+main()
+  .catch((e) => {
+    console.error('❌ 初始化失败:', e);
+    process.exit(1);
+  })
+  .finally(async () => {
+    await prisma.$disconnect();
+  });

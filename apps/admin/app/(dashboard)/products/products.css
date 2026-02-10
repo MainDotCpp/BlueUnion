@@ -1,0 +1,371 @@
+/* ===== 产品页面样式 ===== */
+
+.products-page {
+  animation: fadeIn 0.4s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 统计卡片区域 */
+.stats-row {
+  margin-bottom: 24px;
+}
+
+.stat-card {
+  background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(250,250,250,0.95) 100%);
+  border: 1px solid rgba(114, 46, 209, 0.1);
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.stat-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(114, 46, 209, 0.12);
+  border-color: rgba(114, 46, 209, 0.3);
+}
+
+.stat-card .ant-statistic-title {
+  color: #666;
+  font-size: 13px;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.stat-card .ant-statistic-content {
+  font-family: 'JetBrains Mono', 'SF Mono', Monaco, 'Cascadia Code', monospace;
+  font-weight: 600;
+}
+
+/* 产品表格 */
+.products-table {
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.products-table .ant-table {
+  font-size: 14px;
+}
+
+.products-table .ant-table-thead > tr > th {
+  background: linear-gradient(180deg, #fafafa 0%, #f5f5f5 100%);
+  color: #333;
+  font-weight: 600;
+  border-bottom: 2px solid #e8e8e8;
+  padding: 16px 12px;
+}
+
+.products-table .ant-table-tbody > tr {
+  transition: all 0.2s ease;
+}
+
+.products-table .ant-table-tbody > tr:hover {
+  background: linear-gradient(90deg, rgba(114, 46, 209, 0.03) 0%, rgba(114, 46, 209, 0.01) 100%);
+  box-shadow: inset 3px 0 0 #722ed1;
+}
+
+.products-table .ant-table-tbody > tr > td {
+  padding: 16px 12px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+/* 产品单元格 */
+.product-cell {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.product-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.product-name {
+  font-weight: 600;
+  font-size: 14px;
+  color: #1a1a1a;
+  margin-bottom: 4px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.product-slug {
+  font-family: 'JetBrains Mono', 'SF Mono', Monaco, monospace;
+  font-size: 12px;
+  color: #999;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* 分类标签 */
+.category-tag {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 4px 12px;
+  font-weight: 500;
+  box-shadow: 0 2px 4px rgba(102, 126, 234, 0.2);
+}
+
+/* 价格单元格 */
+.price-cell {
+  font-family: 'JetBrains Mono', 'SF Mono', Monaco, monospace;
+}
+
+.current-price {
+  font-size: 16px;
+  font-weight: 700;
+  color: #f5222d;
+  background: linear-gradient(135deg, #ff4d4f 0%, #f5222d 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.original-price {
+  font-size: 12px;
+  color: #999;
+  text-decoration: line-through;
+  margin-top: 2px;
+}
+
+/* 状态标签 */
+.status-tag {
+  border-radius: 6px;
+  padding: 4px 12px;
+  font-weight: 500;
+  border: none;
+}
+
+.status-draft {
+  background: linear-gradient(135deg, #e8e8e8 0%, #d9d9d9 100%);
+  color: #666;
+}
+
+.status-active {
+  background: linear-gradient(135deg, #52c41a 0%, #389e0d 100%);
+  color: #fff;
+  box-shadow: 0 2px 4px rgba(82, 196, 26, 0.3);
+}
+
+.status-inactive {
+  background: linear-gradient(135deg, #faad14 0%, #fa8c16 100%);
+  color: #fff;
+  box-shadow: 0 2px 4px rgba(250, 173, 20, 0.3);
+}
+
+.status-soldout {
+  background: linear-gradient(135deg, #ff4d4f 0%, #cf1322 100%);
+  color: #fff;
+  box-shadow: 0 2px 4px rgba(255, 77, 79, 0.3);
+}
+
+/* 库存单元格 - 新设计 */
+.inventory-cell-new {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: flex-start;
+}
+
+.inventory-badge-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.inventory-badge-row .ant-badge {
+  line-height: 1;
+}
+
+.inventory-badge-row .badge-low .ant-badge-count {
+  background: linear-gradient(135deg, #ff4d4f 0%, #cf1322 100%);
+  box-shadow: 0 2px 6px rgba(255, 77, 79, 0.3);
+  font-weight: 600;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.inventory-badge-row .badge-ok .ant-badge-count {
+  background: linear-gradient(135deg, #52c41a 0%, #389e0d 100%);
+  box-shadow: 0 2px 6px rgba(82, 196, 26, 0.3);
+  font-weight: 600;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.inventory-label {
+  font-size: 12px;
+  color: #999;
+  font-weight: 500;
+}
+
+.inventory-actions-new {
+  display: flex;
+  gap: 4px;
+}
+
+.action-icon-btn {
+  width: 28px;
+  height: 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  color: #666;
+  background: #fafafa;
+  border: 1px solid #e8e8e8;
+}
+
+.action-icon-btn:hover {
+  background: linear-gradient(135deg, #722ed1 0%, #531dab 100%);
+  color: #fff;
+  border-color: #722ed1;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(114, 46, 209, 0.3);
+}
+
+.action-icon-btn.extract-btn:hover {
+  background: linear-gradient(135deg, #722ed1 0%, #531dab 100%);
+}
+
+/* 统计数据单元格 */
+.stats-cell {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.stat-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  color: #666;
+  font-weight: 500;
+}
+
+.stat-icon {
+  color: #722ed1;
+  font-size: 14px;
+}
+
+.featured-tag {
+  background: linear-gradient(135deg, #ffd700 0%, #ffb800 100%);
+  color: #8b4513;
+  border: none;
+  border-radius: 6px;
+  padding: 2px 8px;
+  font-size: 12px;
+  font-weight: 600;
+  box-shadow: 0 2px 4px rgba(255, 215, 0, 0.3);
+}
+
+/* 操作按钮 */
+.action-buttons .ant-btn {
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+.action-buttons .ant-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(114, 46, 209, 0.2);
+}
+
+/* 创建按钮 */
+.create-button {
+  height: 44px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 15px;
+  background: linear-gradient(135deg, #722ed1 0%, #531dab 100%);
+  border: none;
+  box-shadow: 0 4px 12px rgba(114, 46, 209, 0.3);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.create-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(114, 46, 209, 0.4);
+  background: linear-gradient(135deg, #531dab 0%, #391085 100%);
+}
+
+.create-button:active {
+  transform: translateY(0);
+}
+
+/* 分页样式 */
+.products-table .ant-pagination {
+  margin: 24px 16px;
+}
+
+.products-table .ant-pagination-item {
+  border-radius: 6px;
+  border-color: #d9d9d9;
+  transition: all 0.2s ease;
+}
+
+.products-table .ant-pagination-item:hover {
+  border-color: #722ed1;
+  transform: translateY(-1px);
+}
+
+.products-table .ant-pagination-item-active {
+  background: linear-gradient(135deg, #722ed1 0%, #531dab 100%);
+  border-color: #722ed1;
+  box-shadow: 0 2px 8px rgba(114, 46, 209, 0.3);
+}
+
+.products-table .ant-pagination-item-active a {
+  color: #fff;
+}
+
+/* 响应式优化 */
+@media (max-width: 768px) {
+  .stats-row {
+    gap: 12px !important;
+  }
+
+  .stat-card {
+    margin-bottom: 0;
+  }
+
+  .product-cell {
+    gap: 8px;
+  }
+
+  .product-name {
+    font-size: 13px;
+  }
+
+  .product-slug {
+    font-size: 11px;
+  }
+}
+
+/* 加载动画 */
+.products-table .ant-spin-container {
+  min-height: 400px;
+}
+
+.products-table .ant-table-placeholder {
+  background: linear-gradient(135deg, #fafafa 0%, #f5f5f5 100%);
+  border-radius: 8px;
+  padding: 60px 20px;
+}

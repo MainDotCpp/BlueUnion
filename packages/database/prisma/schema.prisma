@@ -1,0 +1,225 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = "postgresql://blueunion:blueunion@141.164.43.115::5432/blueunion"
+}
+
+model categories {
+  id               String         @id
+  name             String
+  slug             String         @unique
+  description      String?
+  icon             String?
+  sort             Int            @default(0)
+  status           CategoryStatus @default(ACTIVE)
+  parentId         String?
+  createdAt        DateTime       @default(now())
+  updatedAt        DateTime
+  categories       categories?    @relation("categoriesTocategories", fields: [parentId], references: [id])
+  other_categories categories[]   @relation("categoriesTocategories")
+  products         products[]
+
+  @@index([parentId])
+  @@index([status])
+}
+
+model inventory {
+  id           String          @id
+  productId    String
+  cardNumber   String?
+  cardPassword String?
+  accountInfo  Json?
+  status       InventoryStatus @default(AVAILABLE)
+  orderId      String?
+  soldAt       DateTime?
+  batchId      String?
+  importedBy   String?
+  expiresAt    DateTime?
+  createdAt    DateTime        @default(now())
+  updatedAt    DateTime
+  orders       orders?         @relation(fields: [orderId], references: [id])
+  products     products        @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@index([batchId])
+  @@index([orderId])
+  @@index([productId])
+  @@index([status])
+}
+
+model order_items {
+  id           String   @id
+  orderId      String
+  productId    String
+  productName  String
+  productImage String?
+  quantity     Int      @default(1)
+  price        Decimal  @db.Decimal(10, 2)
+  subtotal     Decimal  @db.Decimal(10, 2)
+  createdAt    DateTime @default(now())
+  orders       orders   @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  products     products @relation(fields: [productId], references: [id])
+
+  @@index([orderId])
+  @@index([productId])
+}
+
+model orders {
+  id             String        @id
+  orderNo        String        @unique
+  userId         String?
+  buyerEmail     String?
+  totalAmount    Decimal       @db.Decimal(10, 2)
+  paidAmount     Decimal       @db.Decimal(10, 2)
+  discountAmount Decimal       @default(0) @db.Decimal(10, 2)
+  status         OrderStatus   @default(PENDING)
+  paymentStatus  PaymentStatus @default(UNPAID)
+  paymentMethod  String?
+  transactionId  String?
+  paidAt         DateTime?
+  deliveredAt    DateTime?
+  deliveryInfo   Json?
+  refundAmount   Decimal?      @db.Decimal(10, 2)
+  refundReason   String?
+  refundAt       DateTime?
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime
+  inventory      inventory[]
+  order_items    order_items[]
+  users          users?        @relation(fields: [userId], references: [id])
+
+  @@index([createdAt])
+  @@index([orderNo])
+  @@index([paymentStatus])
+  @@index([status])
+  @@index([userId])
+}
+
+model permissions {
+  id          String   @id
+  resource    String
+  action      String
+  description String?
+  createdAt   DateTime @default(now())
+  roles       roles[]  @relation("PermissionToRole")
+
+  @@unique([resource, action])
+}
+
+model products {
+  id            String        @id
+  name          String
+  slug          String        @unique
+  description   String?
+  image         String?
+  price         Decimal       @db.Decimal(10, 2)
+  originalPrice Decimal?      @db.Decimal(10, 2)
+  categoryId    String
+  status        ProductStatus @default(DRAFT)
+  featured      Boolean       @default(false)
+  sort          Int           @default(0)
+  stockType     StockType     @default(CARD)
+  autoDeliver   Boolean       @default(true)
+  salesCount    Int           @default(0)
+  viewCount     Int           @default(0)
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime
+  inventory     inventory[]
+  order_items   order_items[]
+  categories    categories    @relation(fields: [categoryId], references: [id])
+
+  @@index([categoryId])
+  @@index([featured])
+  @@index([status])
+}
+
+model roles {
+  id          String        @id
+  name        String        @unique
+  code        String        @unique
+  description String?
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime
+  users       users[]
+  permissions permissions[] @relation("PermissionToRole")
+}
+
+model system_config {
+  id          String   @id
+  key         String   @unique
+  value       Json
+  description String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime
+}
+
+model users {
+  id          String     @id
+  username    String     @unique
+  email       String?    @unique
+  password    String
+  nickname    String?
+  avatar      String?
+  status      UserStatus @default(ACTIVE)
+  roleId      String
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime
+  lastLoginAt DateTime?
+  orders      orders[]
+  roles       roles      @relation(fields: [roleId], references: [id])
+
+  @@index([email])
+  @@index([roleId])
+  @@index([username])
+}
+
+enum CategoryStatus {
+  ACTIVE
+  INACTIVE
+}
+
+enum InventoryStatus {
+  AVAILABLE
+  RESERVED
+  SOLD
+  EXPIRED
+  INVALID
+}
+
+enum OrderStatus {
+  PENDING
+  PAID
+  DELIVERED
+  COMPLETED
+  CANCELLED
+  REFUNDED
+}
+
+enum PaymentStatus {
+  UNPAID
+  PAID
+  REFUNDING
+  REFUNDED
+}
+
+enum ProductStatus {
+  DRAFT
+  ACTIVE
+  INACTIVE
+  SOLD_OUT
+}
+
+enum StockType {
+  CARD
+  ACCOUNT
+  COUPON
+  OTHER
+}
+
+enum UserStatus {
+  ACTIVE
+  INACTIVE
+  BANNED
+}
