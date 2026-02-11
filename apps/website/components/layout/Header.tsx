@@ -19,20 +19,25 @@ export default function Header() {
     { name: '服务', href: '#services' },
     { name: '案例', href: '#cases' },
     { name: '关于', href: '#about' },
+    { name: '商店', href: '/shop' },
   ];
 
-  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+  const handleNavClick = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    href: string
+  ) => {
     if (href.startsWith('#')) {
       e.preventDefault();
       const element = document.querySelector(href);
       if (element) {
         const headerOffset = 80;
         const elementPosition = element.getBoundingClientRect().top;
-        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+        const offsetPosition =
+          elementPosition + window.pageYOffset - headerOffset;
 
         window.scrollTo({
           top: offsetPosition,
-          behavior: 'smooth'
+          behavior: 'smooth',
         });
       }
       setIsMobileMenuOpen(false);
@@ -48,18 +53,24 @@ export default function Header() {
       }`}
     >
       <nav className="container mx-auto px-6 md:px-12">
-        <div className={`flex items-center justify-between transition-all duration-500 ${
-          isScrolled ? 'h-16 md:h-18' : 'h-20 md:h-24'
-        }`}>
+        <div
+          className={`flex items-center justify-between transition-all duration-500 ${
+            isScrolled ? 'h-16 md:h-18' : 'h-20 md:h-24'
+          }`}
+        >
           {/* Logo */}
           <Link href="/" className="relative group z-50">
             <div className="flex items-center gap-2.5">
               {/* Animated Logo Icon */}
               <div className="relative">
                 <div className="absolute inset-0 bg-blue-600/20 blur-lg rounded-full group-hover:bg-blue-500/30 transition-all duration-500" />
-                <div className={`relative rounded-xl bg-white flex items-center justify-center shadow-lg shadow-blue-600/50 group-hover:shadow-blue-500/70 transition-all duration-500 group-hover:scale-110 group-hover:rotate-6 overflow-hidden ${
-                  isScrolled ? 'w-8 h-8 md:w-9 md:h-9' : 'w-10 h-10 md:w-11 md:h-11'
-                }`}>
+                <div
+                  className={`relative rounded-xl bg-white flex items-center justify-center shadow-lg shadow-blue-600/50 group-hover:shadow-blue-500/70 transition-all duration-500 group-hover:scale-110 group-hover:rotate-6 overflow-hidden ${
+                    isScrolled
+                      ? 'w-8 h-8 md:w-9 md:h-9'
+                      : 'w-10 h-10 md:w-11 md:h-11'
+                  }`}
+                >
                   <img
                     src="/logo.png"
                     alt="BlueUnion Logo"
@@ -72,14 +83,20 @@ export default function Header() {
 
               {/* Logo Text */}
               <div className="flex flex-col">
-                <span className={`font-black text-white tracking-tight group-hover:text-blue-400 transition-all duration-300 ${
-                  isScrolled ? 'text-base md:text-lg' : 'text-xl md:text-2xl'
-                }`}>
+                <span
+                  className={`font-black text-white tracking-tight group-hover:text-blue-400 transition-all duration-300 ${
+                    isScrolled ? 'text-base md:text-lg' : 'text-xl md:text-2xl'
+                  }`}
+                >
                   蓝聚出海
                 </span>
-                <span className={`font-bold uppercase tracking-[0.3em] text-blue-400/60 transition-all duration-300 ${
-                  isScrolled ? 'text-[7px] md:text-[8px]' : 'text-[8px] md:text-[9px]'
-                }`}>
+                <span
+                  className={`font-bold uppercase tracking-[0.3em] text-blue-400/60 transition-all duration-300 ${
+                    isScrolled
+                      ? 'text-[7px] md:text-[8px]'
+                      : 'text-[8px] md:text-[9px]'
+                  }`}
+                >
                   BlueUnion HK
                 </span>
               </div>
@@ -136,9 +153,13 @@ export default function Header() {
             aria-label="Toggle menu"
           >
             {isMobileMenuOpen ? (
-              <X className={`text-white transition-all duration-300 ${isScrolled ? 'w-5 h-5' : 'w-5.5 h-5.5'}`} />
+              <X
+                className={`text-white transition-all duration-300 ${isScrolled ? 'w-5 h-5' : 'w-5.5 h-5.5'}`}
+              />
             ) : (
-              <Menu className={`text-white transition-all duration-300 ${isScrolled ? 'w-5 h-5' : 'w-5.5 h-5.5'}`} />
+              <Menu
+                className={`text-white transition-all duration-300 ${isScrolled ? 'w-5 h-5' : 'w-5.5 h-5.5'}`}
+              />
             )}
           </button>
         </div>
@@ -161,7 +182,9 @@ export default function Header() {
                 className="group relative text-4xl font-black text-white/80 hover:text-white transition-all duration-300"
                 style={{
                   animationDelay: `${index * 100}ms`,
-                  animation: isMobileMenuOpen ? 'slideInUp 0.6s ease-out forwards' : 'none'
+                  animation: isMobileMenuOpen
+                    ? 'slideInUp 0.6s ease-out forwards'
+                    : 'none',
                 }}
               >
                 <span className="relative z-10">{item.name}</span>
@@ -180,7 +203,9 @@ export default function Header() {
 
           {/* Decorative Background */}
           <div className="absolute bottom-10 right-10 text-[15vw] font-black text-white/[0.02] leading-none pointer-events-none select-none">
-            蓝聚<br />国际
+            蓝聚
+            <br />
+            国际
           </div>
         </div>
       </nav>
