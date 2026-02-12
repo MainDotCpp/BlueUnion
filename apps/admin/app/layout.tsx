@@ -2,6 +2,8 @@ import './globals.css';
 import type { Metadata } from 'next';
 import Providers from './providers';
 
+export const dynamic = 'force-dynamic';
+
 export const metadata: Metadata = {
   title: '蓝聚出海 - 管理后台',
   description: '发卡网管理系统',
