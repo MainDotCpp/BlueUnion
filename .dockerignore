@@ -1,0 +1,12 @@
+node_modules
+.next
+.git
+.gitignore
+*.md
+.env*
+!.env.production
+docker-compose*.yml
+Dockerfile*
+apps/admin-v2
+debug-db.ts
+packages/database/debug-db-local.ts

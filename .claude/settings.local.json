@@ -35,7 +35,8 @@
       "Bash(pnpm --filter admin add:*)",
       "Bash(npx prisma generate:*)",
       "Bash(pnpm prisma generate)",
-      "Bash(pnpm typecheck:*)"
+      "Bash(pnpm typecheck:*)",
+      "Bash(pnpm:*)"
     ]
   }
 }
