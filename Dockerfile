@@ -29,6 +29,9 @@ RUN cd packages/database && pnpm db:generate
 # Build the target app
 RUN pnpm build:${APP_NAME}
 
+# Ensure public dir exists (admin may not have one)
+RUN mkdir -p /app/apps/${APP_NAME}/public
+
 # ---- Runner ----
 FROM node:20-alpine AS runner
 RUN apk add --no-cache openssl
