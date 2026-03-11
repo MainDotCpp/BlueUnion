@@ -19,7 +19,7 @@ export default function Header() {
     { name: '服务', href: '#services' },
     { name: '案例', href: '#cases' },
     { name: '关于', href: '#about' },
-    { name: '商店', href: '/shop' },
+    { name: '商店', href: 'https://shop.creation-union.com' },
   ];
 
   const handleNavClick = (
@@ -73,7 +73,7 @@ export default function Header() {
                 >
                   <img
                     src="/logo.png"
-                    alt="BlueUnion Logo"
+                    alt="Creation Union Logo"
                     className={`transition-all duration-500 ${
                       isScrolled ? 'w-full h-full' : 'w-full h-full'
                     }`}
@@ -88,7 +88,7 @@ export default function Header() {
                     isScrolled ? 'text-base md:text-lg' : 'text-xl md:text-2xl'
                   }`}
                 >
-                  蓝聚出海
+                  联创互动
                 </span>
                 <span
                   className={`font-bold uppercase tracking-[0.3em] text-blue-400/60 transition-all duration-300 ${
@@ -97,7 +97,7 @@ export default function Header() {
                       : 'text-[8px] md:text-[9px]'
                   }`}
                 >
-                  BlueUnion HK
+                  Creation Union HK
                 </span>
               </div>
             </div>
@@ -203,9 +203,9 @@ export default function Header() {
 
           {/* Decorative Background */}
           <div className="absolute bottom-10 right-10 text-[15vw] font-black text-white/[0.02] leading-none pointer-events-none select-none">
-            蓝聚
+            联创
             <br />
-            国际
+            互动
           </div>
         </div>
       </nav>

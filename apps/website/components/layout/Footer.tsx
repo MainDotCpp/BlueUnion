@@ -45,11 +45,11 @@ export default function Footer() {
               <div className="relative">
                 <div className="absolute inset-0 bg-blue-600/30 blur-xl rounded-full group-hover:bg-blue-500/40 transition-all duration-500" />
                 <div className="relative w-14 h-14 rounded-xl bg-white flex items-center justify-center shadow-lg shadow-blue-600/50 overflow-hidden">
-                  <img src="/logo.png" alt="BlueUnion Logo" className="w-full h-full object-contain" />
+                  <img src="/logo.png" alt="Creation Union Logo" className="w-full h-full object-contain" />
                 </div>
               </div>
               <div className="flex flex-col">
-                <span className="text-2xl font-black tracking-tight">BlueUnion</span>
+                <span className="text-2xl font-black tracking-tight">Creation Union</span>
                 <span className="text-[9px] font-bold uppercase tracking-[0.3em] text-blue-400/60">Global Growth</span>
               </div>
             </Link>
@@ -92,22 +92,9 @@ export default function Footer() {
             <div className="col-span-2 md:col-span-1">
               <h4 className="text-xs font-black uppercase tracking-[0.3em] text-blue-400 mb-8">联系我们</h4>
               <div className="space-y-6">
-                {/* WeChat QR Code */}
-                <div className="group">
-                  <div className="flex items-center gap-3 mb-3">
-                    <MessageCircle className="w-5 h-5 text-blue-400" />
-                    <span className="text-sm font-medium text-slate-300">微信咨询</span>
-                  </div>
-                  <div className="relative w-32 h-32 bg-white rounded-xl p-2 shadow-lg group-hover:scale-105 transition-transform duration-300">
-                    <div className="w-full h-full bg-slate-100 rounded-lg flex items-center justify-center text-xs text-slate-400">
-                      二维码
-                    </div>
-                  </div>
-                </div>
-
                 {/* WhatsApp */}
                 <a
-                  href="https://wa.me/852XXXXXXXX"
+                  href="https://wa.me/12342993202"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="group flex items-center gap-3 text-slate-300 hover:text-white transition-colors"
@@ -119,7 +106,7 @@ export default function Footer() {
 
                 {/* Telegram */}
                 <a
-                  href="https://t.me/BlueUnionHQ"
+                  href="https://t.me/CU_leon"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="group flex items-center gap-3 text-slate-300 hover:text-white transition-colors"
@@ -137,7 +124,7 @@ export default function Footer() {
         <div className="pt-10 border-t border-white/10">
           <div className="flex flex-col md:flex-row justify-between items-center gap-6">
             <p className="text-slate-500 text-sm font-medium">
-              © {currentYear} BlueUnion Global. All rights reserved.
+              © {currentYear} Creation Union Global. All rights reserved.
             </p>
 
             <div className="flex items-center gap-8">

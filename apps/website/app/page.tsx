@@ -397,7 +397,7 @@ export default function HomePage() {
           <div className="hero-meta-item grid grid-cols-1 lg:grid-cols-12 gap-10 md:gap-12 items-end">
             <div className="lg:col-span-7">
               <p className="text-lg md:text-3xl font-medium leading-tight text-white/80 max-w-2xl text-balance">
-                蓝聚出海（BlueUnion）专注于全球数字营销与深度增长。
+                联创互动（Creation Union）专注于全球数字营销与深度增长。
                 <span className="text-white/30 block md:inline mt-2 md:mt-0">我们构建的不仅是流量，更是驱动业务跨越国界的生命力体系。</span>
               </p>
             </div>
@@ -443,7 +443,7 @@ export default function HomePage() {
             </h2>
             <div className="max-w-sm">
               <p className="text-xl text-slate-500 font-medium leading-relaxed mb-8">
-                蓝聚出海不仅提供投放，更提供成熟的媒体账户整合与管理能力。
+                联创互动不仅提供投放，更提供成熟的媒体账户整合与管理能力。
               </p>
               <div className="h-1 w-20 bg-blue-600" />
             </div>
@@ -1021,7 +1021,7 @@ export default function HomePage() {
       {/* --- REPUTATION FOOTER TAG --- */}
       <footer className="py-24 border-t border-slate-100 bg-white">
         <div className="container mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-12 text-[10px] font-black uppercase tracking-[0.6em] text-slate-300">
-          <span>BlueUnion Global Intelligence</span>
+          <span>Creation Union Global Intelligence</span>
           <div className="flex gap-16">
             <span className="hover:text-blue-600 cursor-pointer transition-colors">Shanghai</span>
             <span className="hover:text-blue-600 cursor-pointer transition-colors">Singapore</span>
